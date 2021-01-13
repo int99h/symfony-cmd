@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use App\Service\DataService;
+use App\Service\SomeService;
+use App\Command\AppCommand;
+
+$application = new Application('console-app', '0.0.1');
+// init services
+$command = new AppCommand(new SomeService(new DataService()));
+$application->add($command);
+
+$application->setDefaultCommand($command->getName(), true);
+$application->run();

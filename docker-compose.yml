@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    build: .docker
+    container_name: console-app
+    command: /app/bin/run -o fire
+    volumes:
+      - ./:/app:cached
+    env_file:
+      - ./.env
